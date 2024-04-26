@@ -2,7 +2,7 @@
 @extends('layout.master_layout')
 @section('content')
 @livewireStyles
-<div class="content-wrapper"> 
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -29,10 +29,11 @@
        </div>
     </section>
  </div>
-  @endsection 
+  @endsection
 @livewireScripts
   @push('customScript')
-<script src="{{ asset('theme_assests/custom_js/deleteDepartment.js') }}"></script> 
+<script src="{{ asset('theme_assests/custom_js/deleteDepartment.js') }}"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 @endpush
   @else
   <script> window.location.href = "{{ url('/admin/login/index') }}"; </script>

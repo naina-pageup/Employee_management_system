@@ -23,7 +23,7 @@
 <body class="hold-transition register-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="#"><b>Admin</b>LTE</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -61,16 +61,15 @@
                         <p class="text-danger">{{ $errors->first('password') }}</p>
                     @endif
                     <div class="row">
-
-                        <!-- /.col -->
                         @if (session()->has('error'))
                             <div class="col-12 ">
-
                                 <p class="text-danger fs-6 fw-bold">{{ Session::get('error') }}</p>
-
                             </div>
                         @endif
-                        <div class="g-recaptcha" data-sitekey="{{ config('captcha.sitekey') }}"></div>
+                        <div class="input-group mb-3">
+                            <div class="g-recaptcha pl-2" data-sitekey="{{ config('captcha.sitekey') }}">
+                            </div>
+                        </div>
                         @if ($errors->has('g-recaptcha-response'))
                             <p class="text-danger">{{ $errors->first('g-recaptcha-response') }}</p>
                         @endif

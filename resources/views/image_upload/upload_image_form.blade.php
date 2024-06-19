@@ -1,4 +1,3 @@
-{{-- @if ((!empty(auth()->user()) && auth()->user()->role == 1) || auth()->user()->role == 2) --}}
 @extends('layout.master_layout')
 @section('content')
     <div class="content-wrapper">
@@ -34,18 +33,13 @@
                                     <div class="form-group col-6">
                                         <input type="file" name="images[]" class="form-control image-input">
                                     </div>
+                                    <div id="preview" class="d-flex flex-wrap"></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="preview" class="d-flex flex-wrap"></div>
                         <button type="submit" class="btn btn-primary mt-3">Upload</button>
                     </form>
                 </div>
-
-
-
-
-
         </section>
     </div>
 @endsection
@@ -53,6 +47,7 @@
     <script src="{{ asset('theme_assests/custom_js/addEmployee.js') }}"></script>
     <script>
         $(document).ready(function() {
+            // Function to handle image input change event
             function handleImageInputChange() {
                 $('.image-input').off('change').on('change', function() {
                     var input = $(this);
@@ -77,25 +72,24 @@
                 });
             }
 
-
+            // Initialize the first image input
             handleImageInputChange();
 
+            // Add more images input field
 
             $('#add-more-images').on('click', function() {
                 var newInput = $(
-                    ' <div class="container"><div class="row"><div class="form-group col-6"><input type="file" name="images[]" class="form-control image-input"><button type="button" class="btn btn-danger remove-image-input mt-2 float-right">Remove</button></div></div></div>'
+                    ' <div class="container"><div class="row"><div class="form-group col-6"><input type="file" name="images[]" class="form-control image-input"><button type="button" class="btn btn-danger remove-image-input mt-2 float-right">Remove</button></div><div id="preview" class="d-flex flex-wrap"></div></div></div>'
                     );
                 $('#image-upload-section').append(newInput);
                 handleImageInputChange();
             });
 
-           
+            // Remove image input field
             $('#image-upload-section').on('click', '.remove-image-input', function() {
                 $(this).parent().remove();
             });
         });
     </script>
 @endpush
-{{-- @else
-  <script> window.location.href = "{{ url('/admin/login/index') }}"; </script>
-  @endif --}}
+

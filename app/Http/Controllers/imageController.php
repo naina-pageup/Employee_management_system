@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Image;
+use App\Models\image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +25,7 @@ class imageController extends Controller
                 $name = time() . rand(1, 100) . '.' . $file->extension();
                 $file->move(public_path('images/profile'), $name);
 
-                Image::create([
+                image::create([
 
                     'path' => 'images/profile/' . $name,
                 ]);
@@ -36,7 +36,7 @@ class imageController extends Controller
     }
     public function index()
     {
-        $dbImages = Image::all();
+        $dbImages = image::all();
 
         $directory = public_path('images/profile');
         $fileSystemImages = File::files($directory);

@@ -6,6 +6,8 @@ use App\Http\Controllers\DepartmentMasterController;
 use App\Http\Controllers\DesignationMasterController;
 use App\Http\Controllers\EmployeeMasterController;
 use App\Http\Controllers\SuperAdminMasterController;
+use App\Http\Controllers\imageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,13 @@ Route::get('/admin/registration',[AdminMasterController::class,'create']);
 Route::post('/admin/registration',[AdminMasterController::class,'store']);
 Route::get('/admin/login/index',[AdminMasterController::class,'loginView']);
 Route::post('/admin/login',[AdminMasterController::class,'loginAction']);
-
+Route::get('/upload', [imageController::class, 'create'])->name('images.create');
+Route::post('/upload', [ImageController::class, 'store'])->name('images.store');
+Route::get('/images', [ImageController::class, 'index']);
+Route::post('/images/delete', [ImageController::class, 'delete'])->name('images.delete');
 //****************************Super Admin And Admin Authenticate**********************************/
 Route::group(['prefix' => 'admin','middleware' => ['web','isadmin']],function(){
-  
+
 Route::get('/dashboard',[AdminMasterController::class,'dashboard']);
 Route::get('/registration/requests',[SuperAdminMasterController::class,'getAllRequest']);
 Route::get('/request/action/{id}/{status}',[SuperAdminMasterController::class,'approvedOrRejectRequest']);
